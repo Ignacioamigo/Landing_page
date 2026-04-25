@@ -1,9 +1,21 @@
 "use client";
 
+import Script from "next/script";
 import { motion } from "framer-motion";
-import { Play, Sparkles, Users } from "lucide-react";
+import { Sparkles, Users } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { CtaButton } from "@/components/lead-modal/cta-button";
+
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      "wistia-player": React.HTMLAttributes<HTMLElement> & {
+        "media-id"?: string;
+        aspect?: string | number;
+      };
+    }
+  }
+}
 
 export function Hero() {
   return (
@@ -51,48 +63,50 @@ export function Hero() {
           </div>
         </motion.div>
 
-        {/* Video placeholder */}
+        {/* Hero video */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.15, duration: 0.5, ease: "easeOut" }}
           className="mx-auto mt-14 max-w-4xl"
         >
-          <VideoPlaceholder />
+          <HeroVideo />
         </motion.div>
       </Container>
     </section>
   );
 }
 
-function VideoPlaceholder() {
+const WISTIA_VIDEO_ID = "sp2wkyysnr";
+
+function HeroVideo() {
   return (
-    <div className="group relative overflow-hidden rounded-2xl border border-border bg-surface glow">
-      <div className="relative aspect-video w-full bg-gradient-to-br from-surface-2 via-surface to-background">
-        {/* Decorative glow */}
-        <div
-          aria-hidden
-          className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(139,92,246,0.25)_0%,transparent_60%)]"
+    <>
+      {/* Video-specific Wistia module (player.js is loaded globally in layout) */}
+      <Script
+        src={`https://fast.wistia.com/embed/${WISTIA_VIDEO_ID}.js`}
+        strategy="afterInteractive"
+        type="module"
+      />
+
+      {/* Swatch style: blurred thumbnail while the player initialises */}
+      <style>{`
+        wistia-player[media-id='${WISTIA_VIDEO_ID}']:not(:defined) {
+          background: center / contain no-repeat
+            url('https://fast.wistia.com/embed/medias/${WISTIA_VIDEO_ID}/swatch');
+          display: block;
+          filter: blur(5px);
+          padding-top: 56.25%;
+        }
+      `}</style>
+
+      <div className="overflow-hidden rounded-2xl border border-border glow">
+        <wistia-player
+          media-id={WISTIA_VIDEO_ID}
+          aspect={1.7777777777777777}
+          style={{ display: "block", width: "100%" }}
         />
-
-        <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
-          <button
-            type="button"
-            aria-label="Play preview"
-            className="flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-accent to-accent-2 text-white shadow-[0_10px_40px_-8px_rgba(139,92,246,0.8)] transition-transform duration-300 hover:scale-110 sm:h-24 sm:w-24"
-          >
-            <Play className="ml-1 h-8 w-8 fill-current sm:h-10 sm:w-10" />
-          </button>
-          <p className="text-xs uppercase tracking-widest text-muted">
-            Watch the 60-second preview
-          </p>
-        </div>
-
-        {/* Mute toggle (visual placeholder for autoplay-muted video) */}
-        <div className="absolute bottom-4 right-4 rounded-full border border-border bg-background/70 px-3 py-1.5 text-[11px] font-medium text-muted backdrop-blur">
-          Tap to unmute
-        </div>
       </div>
-    </div>
+    </>
   );
 }

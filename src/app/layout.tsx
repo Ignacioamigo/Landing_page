@@ -73,6 +73,9 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-background text-foreground selection:bg-accent/40">
         <ModalProvider>{children}</ModalProvider>
 
+        {/* Wistia player runtime — loaded once for the whole site */}
+        <Script src="https://fast.wistia.com/player.js" strategy="afterInteractive" />
+
         {PIXEL_ID ? (
           <>
             <Script id="meta-pixel" strategy="afterInteractive">
