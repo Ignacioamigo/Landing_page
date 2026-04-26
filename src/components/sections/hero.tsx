@@ -6,17 +6,6 @@ import { Sparkles, Users } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { CtaButton } from "@/components/lead-modal/cta-button";
 
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      "wistia-player": React.HTMLAttributes<HTMLElement> & {
-        "media-id"?: string;
-        aspect?: string | number;
-      };
-    }
-  }
-}
-
 export function Hero() {
   return (
     <section className="relative overflow-hidden bg-hero-radial pt-28 pb-16 sm:pt-32 sm:pb-24">

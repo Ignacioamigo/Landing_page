@@ -1,17 +1,6 @@
 import Script from "next/script";
 import { Container } from "@/components/ui/container";
 
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      "wistia-player": React.HTMLAttributes<HTMLElement> & {
-        "media-id"?: string;
-        aspect?: string | number;
-      };
-    }
-  }
-}
-
 const UGC_VIDEOS: { id: string; aspect: number; paddingTop: string; label: string }[] = [
   { id: "tgg2ls6vfl", aspect: 0.5714285714285714, paddingTop: "175.0%",   label: "Use case 1" },
   { id: "r4chtvy1xn", aspect: 0.5625,             paddingTop: "177.78%",  label: "Use case 2" },
