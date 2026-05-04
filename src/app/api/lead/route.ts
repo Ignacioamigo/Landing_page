@@ -3,6 +3,7 @@ import { leadApiSchema } from "@/lib/schemas";
 import { getSupabaseAdmin } from "@/lib/supabase/server";
 import { sendLeadEvent } from "@/lib/meta-capi";
 import { upsertSubscriber } from "@/lib/mailerlite";
+import { generateMagicLink } from "@/lib/magic-link";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -34,6 +35,12 @@ export async function POST(request: NextRequest) {
   const userAgent = request.headers.get("user-agent") ?? undefined;
   const eventSourceUrl =
     pagePath ?? request.headers.get("referer") ?? request.nextUrl.origin;
+
+  // Generate a signed magic link so MailerLite can include it in the
+  // confirmation email — lets users regain access on a different device.
+  const siteUrl =
+    process.env.NEXT_PUBLIC_SITE_URL ?? request.nextUrl.origin;
+  const magicLink = generateMagicLink(email, siteUrl);
 
   const supabase = getSupabaseAdmin();
 
@@ -76,7 +83,7 @@ export async function POST(request: NextRequest) {
       fbp,
       fbc,
     }),
-    upsertSubscriber({ email, firstName, groupId }),
+    upsertSubscriber({ email, firstName, groupId, magicLink }),
   ]);
 
   if (!capi.ok) {

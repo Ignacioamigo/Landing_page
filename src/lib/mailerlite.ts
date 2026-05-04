@@ -21,6 +21,7 @@ export async function upsertSubscriber(input: {
   email: string;
   firstName: string;
   groupId?: string;
+  magicLink?: string;
 }): Promise<SubscriberResult> {
   const apiKey = process.env.MAILERLITE_API_KEY;
   if (!apiKey) {
@@ -29,7 +30,10 @@ export async function upsertSubscriber(input: {
 
   const body: Record<string, unknown> = {
     email: input.email,
-    fields: { name: input.firstName },
+    fields: {
+      name: input.firstName,
+      ...(input.magicLink ? { magic_link: input.magicLink } : {}),
+    },
   };
 
   if (input.groupId) {
