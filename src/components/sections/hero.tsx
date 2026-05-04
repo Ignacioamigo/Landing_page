@@ -66,7 +66,7 @@ export function Hero() {
   );
 }
 
-const WISTIA_VIDEO_ID = "sp2wkyysnr";
+const WISTIA_VIDEO_ID = "jwgv1a5qf9";
 
 function HeroVideo() {
   return (
