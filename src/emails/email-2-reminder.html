@@ -1,0 +1,226 @@
+<!--
+  NotFilmedAI — Email 2 (sent ~1h after Email 1 if NO click)
+  ───────────────────────────────────────────────────────────────
+  SUBJECT (A/B test):
+    A) Did you watch it yet? (quick reminder)
+    B) {$name}, you left this open…
+    C) Still waiting for you inside
+
+  PREVIEW TEXT:
+    Your class is still there. Takes 60 minutes. Changes everything.
+
+  MailerLite variables:
+    {$name}        → subscriber's first name
+    {$magic_link}  → signed magic link to /thank-you
+    {$unsubscribe} → required unsubscribe URL
+  ───────────────────────────────────────────────────────────────
+-->
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Did you watch it yet?</title>
+  <style>
+    body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+    table, td          { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+    img                { border: 0; outline: none; text-decoration: none; display: block; }
+    body               { margin: 0; padding: 0; background-color: #f4f4f5; }
+
+    /* ── Dark mode ── */
+    @media (prefers-color-scheme: dark) {
+      body,
+      .email-bg   { background-color: #09090b !important; }
+      .card       { background-color: #18181b !important; border-color: #2a2a2f !important; }
+      .headline   { color: #fafafa !important; }
+      .body-text  { color: #a1a1aa !important; }
+      .label      { color: #3b82f6 !important; }
+      .divider    { border-color: #2a2a2f !important; }
+      .footer-text { color: #3f3f46 !important; }
+      .footer-link { color: #52525b !important; }
+      .brand      { color: #ffffff !important; }
+      .nudge-box  { background-color: #1c1c20 !important; border-color: #2a2a2f !important; }
+      .nudge-text { color: #a1a1aa !important; }
+    }
+
+    /* ── Mobile ── */
+    @media only screen and (max-width: 600px) {
+      .email-wrapper { width: 100% !important; }
+      .card          { padding: 32px 24px !important; border-radius: 12px !important; }
+      .headline      { font-size: 24px !important; }
+      .cta-btn       { font-size: 16px !important; padding: 16px 24px !important; width: 100% !important; box-sizing: border-box !important; }
+    }
+  </style>
+</head>
+
+<body style="margin:0;padding:0;background-color:#f4f4f5;">
+
+  <table role="presentation" class="email-bg" width="100%" cellpadding="0" cellspacing="0"
+         style="background-color:#f4f4f5;">
+    <tr>
+      <td align="center" style="padding:40px 16px 24px;">
+
+        <table role="presentation" class="email-wrapper" width="560" cellpadding="0" cellspacing="0"
+               style="max-width:560px;width:100%;">
+
+          <!-- BRAND -->
+          <tr>
+            <td align="center" style="padding-bottom:24px;">
+              <span class="brand"
+                    style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+                           font-size:17px;font-weight:800;letter-spacing:0.06em;color:#09090b;">
+                NotFilmedAI
+              </span>
+            </td>
+          </tr>
+
+          <!-- CARD -->
+          <tr>
+            <td class="card"
+                style="background-color:#ffffff;border:1px solid #e4e4e7;border-radius:16px;
+                       padding:44px 40px;">
+
+              <!-- Badge -->
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td align="center" style="padding-bottom:22px;">
+                    <span style="display:inline-block;
+                                 font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+                                 font-size:11px;font-weight:700;letter-spacing:0.16em;
+                                 text-transform:uppercase;color:#f59e0b;
+                                 border:1px solid rgba(245,158,11,0.35);
+                                 background:rgba(245,158,11,0.08);
+                                 border-radius:999px;padding:5px 14px;">
+                      ⏳ Still waiting for you
+                    </span>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Headline -->
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td align="center" style="padding-bottom:18px;">
+                    <h1 class="headline"
+                        style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+                               font-size:28px;font-weight:700;line-height:1.2;
+                               color:#09090b;margin:0;letter-spacing:-0.02em;">
+                      Hey {$name} — did you get a chance<br />
+                      <span style="background:linear-gradient(110deg,#3b82f6,#8b5cf6);
+                                   -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+                                   background-clip:text;">
+                        to watch the class?
+                      </span>
+                    </h1>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Body copy -->
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td align="center" style="padding-bottom:28px;">
+                    <p class="body-text"
+                       style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+                              font-size:15px;line-height:1.7;color:#52525b;
+                              margin:0;max-width:420px;text-align:center;">
+                      I noticed you haven't had a chance to jump in yet —
+                      totally fine, life gets busy.
+                      <br /><br />
+                      Your personal link is still active. The full 60-minute
+                      class is inside, waiting for when you're ready.
+                    </p>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Nudge box -->
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td style="padding-bottom:28px;">
+                    <div class="nudge-box"
+                         style="background-color:#f9f9fb;border:1px solid #e4e4e7;
+                                border-radius:10px;padding:18px 20px;">
+                      <p class="nudge-text"
+                         style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+                                font-size:14px;line-height:1.6;color:#52525b;margin:0;text-align:center;">
+                        💡 <strong style="color:#09090b;">In just 60 minutes</strong> you'll have a
+                        repeatable system to create and publish AI videos — without ever
+                        showing your face.
+                      </p>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- CTA Button -->
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td align="center" style="padding-bottom:16px;">
+                    <a href="{$magic_link}" class="cta-btn"
+                       style="display:inline-block;
+                              font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+                              font-size:16px;font-weight:700;letter-spacing:0.01em;
+                              color:#ffffff !important;text-decoration:none;
+                              background:linear-gradient(110deg,#3b82f6,#8b5cf6);
+                              border-radius:10px;padding:17px 40px;">
+                      ▶&nbsp; Watch the Class Now
+                    </a>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Trust micro-copy -->
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td align="center" style="padding-bottom:36px;">
+                    <p style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+                               font-size:11px;color:#a1a1aa;margin:0;">
+                      Your personal link · No login needed · Watch at your own pace
+                    </p>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Divider + sign-off -->
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td class="divider" style="border-top:1px solid #e4e4e7;padding-top:24px;">
+                    <p class="body-text"
+                       style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+                              font-size:14px;line-height:1.6;color:#52525b;margin:0;">
+                      See you inside,<br />
+                      <strong style="color:#09090b;">The NotFilmedAI team</strong>
+                    </p>
+                  </td>
+                </tr>
+              </table>
+
+            </td>
+          </tr>
+          <!-- END CARD -->
+
+          <!-- FOOTER -->
+          <tr>
+            <td align="center" style="padding-top:28px;padding-bottom:40px;">
+              <p class="footer-text"
+                 style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+                        font-size:12px;line-height:1.8;color:#a1a1aa;margin:0;text-align:center;">
+                You're receiving this because you registered at NotFilmedAI.<br />
+                <a href="{$unsubscribe}" class="footer-link"
+                   style="color:#a1a1aa;text-decoration:underline;">
+                  Unsubscribe
+                </a>
+              </p>
+            </td>
+          </tr>
+
+        </table>
+
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>
