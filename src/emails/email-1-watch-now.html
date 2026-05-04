@@ -1,18 +1,18 @@
 <!--
   NotFilmedAI — Email 1 (immediate)
   ───────────────────────────────────────────────────────────────
-  SUBJECT (A/B test these):
+  SUBJECT (A/B test):
     A) Your access link is here. Watch now →
-    B) {$ fields.name $}, your class is ready 🎬
+    B) {$name}, your class is ready 🎬
     C) Don't open this if you're not ready to take notes
 
   PREVIEW TEXT:
     Your free AI video masterclass is waiting. Here's the link.
 
-  MailerLite variables used:
-    {$ fields.name $}       → subscriber's first name
-    {$ fields.magic_link $} → signed magic link to /thank-you
-    {$ unsubscribe $}       → required unsubscribe URL
+  MailerLite variables:
+    {$name}        → subscriber's first name
+    {$magic_link}  → signed magic link to /thank-you
+    {$unsubscribe} → required unsubscribe URL
   ───────────────────────────────────────────────────────────────
 -->
 <!DOCTYPE html>
@@ -23,70 +23,74 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Your access link is here</title>
   <style>
-    /* Reset */
     body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
-    table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
-    img { -ms-interpolation-mode: bicubic; border: 0; outline: none; text-decoration: none; }
-    body { margin: 0; padding: 0; background-color: #09090b; }
+    table, td          { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+    img                { border: 0; outline: none; text-decoration: none; display: block; }
+    body               { margin: 0; padding: 0; background-color: #f4f4f5; }
 
-    /* Dark mode (native) */
+    /* ── Dark mode ── */
     @media (prefers-color-scheme: dark) {
-      body, .email-bg { background-color: #09090b !important; }
+      body,
+      .email-bg  { background-color: #09090b !important; }
+      .card      { background-color: #18181b !important; border-color: #2a2a2f !important; }
+      .headline  { color: #fafafa !important; }
+      .body-text { color: #a1a1aa !important; }
+      .label     { color: #3b82f6 !important; }
+      .bullet    { color: #a1a1aa !important; }
+      .divider   { border-color: #2a2a2f !important; }
+      .footer-text { color: #3f3f46 !important; }
+      .footer-link { color: #52525b !important; }
+      .brand     { color: #ffffff !important; }
     }
 
-    /* Mobile */
+    /* ── Mobile ── */
     @media only screen and (max-width: 600px) {
-      .email-wrapper { width: 100% !important; padding: 0 16px !important; }
-      .card          { padding: 32px 24px !important; }
-      .headline      { font-size: 26px !important; line-height: 1.2 !important; }
-      .cta-btn       { font-size: 16px !important; padding: 16px 28px !important; }
+      .email-wrapper { width: 100% !important; }
+      .card          { padding: 32px 24px !important; border-radius: 12px !important; }
+      .headline      { font-size: 26px !important; }
+      .cta-btn       { font-size: 16px !important; padding: 16px 24px !important; width: 100% !important; box-sizing: border-box !important; }
     }
   </style>
 </head>
 
-<body style="margin:0;padding:0;background-color:#09090b;">
+<body style="margin:0;padding:0;background-color:#f4f4f5;">
 
-  <!-- Email background -->
   <table role="presentation" class="email-bg" width="100%" cellpadding="0" cellspacing="0"
-         style="background-color:#09090b;min-height:100vh;">
+         style="background-color:#f4f4f5;">
     <tr>
-      <td align="center" style="padding:48px 16px;">
+      <td align="center" style="padding:40px 16px 24px;">
 
-        <!-- Card wrapper -->
-        <table role="presentation" class="email-wrapper" width="600" cellpadding="0" cellspacing="0"
-               style="max-width:600px;width:100%;">
+        <table role="presentation" class="email-wrapper" width="560" cellpadding="0" cellspacing="0"
+               style="max-width:560px;width:100%;">
 
-          <!-- ── LOGO / BRAND ── -->
+          <!-- BRAND -->
           <tr>
-            <td align="center" style="padding-bottom:32px;">
-              <span style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-                           font-size:18px;font-weight:700;letter-spacing:0.08em;
-                           background:linear-gradient(110deg,#3b82f6,#8b5cf6);
-                           -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-                           background-clip:text;">
+            <td align="center" style="padding-bottom:24px;">
+              <span class="brand"
+                    style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+                           font-size:17px;font-weight:800;letter-spacing:0.06em;color:#09090b;">
                 NotFilmedAI
               </span>
             </td>
           </tr>
 
-          <!-- ── CARD ── -->
+          <!-- CARD -->
           <tr>
             <td class="card"
-                style="background-color:#18181b;border:1px solid #2a2a2f;border-radius:16px;
-                       padding:48px 40px;
-                       box-shadow:0 0 0 1px rgba(139,92,246,0.15),0 20px 60px -12px rgba(59,130,246,0.25);">
+                style="background-color:#ffffff;border:1px solid #e4e4e7;border-radius:16px;
+                       padding:44px 40px;">
 
               <!-- Badge -->
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
                 <tr>
-                  <td align="center" style="padding-bottom:24px;">
+                  <td align="center" style="padding-bottom:22px;">
                     <span style="display:inline-block;
-                                 font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-                                 font-size:11px;font-weight:600;letter-spacing:0.18em;
+                                 font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+                                 font-size:11px;font-weight:700;letter-spacing:0.16em;
                                  text-transform:uppercase;color:#3b82f6;
-                                 border:1px solid rgba(59,130,246,0.3);
+                                 border:1px solid rgba(59,130,246,0.35);
                                  background:rgba(59,130,246,0.08);
-                                 border-radius:999px;padding:6px 14px;">
+                                 border-radius:999px;padding:5px 14px;">
                       ✦ You're in
                     </span>
                   </td>
@@ -96,12 +100,12 @@
               <!-- Headline -->
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
                 <tr>
-                  <td align="center" style="padding-bottom:20px;">
+                  <td align="center" style="padding-bottom:18px;">
                     <h1 class="headline"
-                        style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-                               font-size:32px;font-weight:700;line-height:1.15;
-                               color:#fafafa;margin:0;letter-spacing:-0.02em;">
-                      {$ fields.name $}, your class<br />
+                        style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+                               font-size:30px;font-weight:700;line-height:1.2;
+                               color:#09090b;margin:0;letter-spacing:-0.02em;">
+                      {$name}, your class<br />
                       <span style="background:linear-gradient(110deg,#3b82f6,#8b5cf6);
                                    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
                                    background-clip:text;">
@@ -115,10 +119,11 @@
               <!-- Body copy -->
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
                 <tr>
-                  <td align="center" style="padding-bottom:36px;">
-                    <p style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-                               font-size:16px;line-height:1.7;color:#a1a1aa;
-                               margin:0;max-width:460px;">
+                  <td align="center" style="padding-bottom:32px;">
+                    <p class="body-text"
+                       style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+                              font-size:15px;line-height:1.7;color:#52525b;
+                              margin:0;max-width:420px;text-align:center;">
                       In the next 60 minutes you'll see the exact workflow we
                       use to create viral faceless videos — from prompt to
                       published — using AI tools you can start today.
@@ -132,15 +137,14 @@
               <!-- CTA Button -->
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
                 <tr>
-                  <td align="center" style="padding-bottom:36px;">
-                    <a href="{$ fields.magic_link $}" class="cta-btn"
+                  <td align="center" style="padding-bottom:20px;">
+                    <a href="{$magic_link}" class="cta-btn"
                        style="display:inline-block;
-                              font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-                              font-size:17px;font-weight:600;letter-spacing:0.01em;
-                              color:#ffffff;text-decoration:none;
+                              font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+                              font-size:16px;font-weight:700;letter-spacing:0.01em;
+                              color:#ffffff !important;text-decoration:none;
                               background:linear-gradient(110deg,#3b82f6,#8b5cf6);
-                              border-radius:10px;padding:18px 40px;
-                              box-shadow:0 8px 32px -6px rgba(59,130,246,0.55);">
+                              border-radius:10px;padding:17px 40px;">
                       ▶&nbsp; Watch the Free Class Now
                     </a>
                   </td>
@@ -150,10 +154,10 @@
               <!-- Trust micro-copy -->
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
                 <tr>
-                  <td align="center" style="padding-bottom:40px;">
-                    <p style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-                               font-size:12px;color:#52525b;margin:0;">
-                      Link is personal to you · Valid for 30 days · No login needed
+                  <td align="center" style="padding-bottom:36px;">
+                    <p style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+                               font-size:11px;color:#a1a1aa;margin:0;letter-spacing:0.02em;">
+                      Link is personal to you &nbsp;·&nbsp; Valid for 30 days &nbsp;·&nbsp; No login needed
                     </p>
                   </td>
                 </tr>
@@ -162,30 +166,31 @@
               <!-- Divider -->
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
                 <tr>
-                  <td style="border-top:1px solid #2a2a2f;padding-top:32px;">
+                  <td class="divider" style="border-top:1px solid #e4e4e7;padding-top:28px;">
 
-                    <!-- What's inside teaser -->
-                    <p style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-                               font-size:12px;font-weight:600;letter-spacing:0.14em;
-                               text-transform:uppercase;color:#3b82f6;margin:0 0 16px;">
+                    <p class="label"
+                       style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+                              font-size:11px;font-weight:700;letter-spacing:0.16em;
+                              text-transform:uppercase;color:#3b82f6;margin:0 0 14px;">
                       What you'll learn
                     </p>
 
-                    <!-- 3 bullets -->
                     <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
                       <tr>
-                        <td style="padding-bottom:10px;">
-                          <p style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-                                     font-size:14px;line-height:1.5;color:#a1a1aa;margin:0;">
+                        <td style="padding-bottom:9px;">
+                          <p class="bullet"
+                             style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+                                    font-size:14px;line-height:1.5;color:#52525b;margin:0;">
                             <span style="color:#3b82f6;font-weight:700;">→</span>
                             &nbsp;The exact AI tool stack — what to use, what to ignore
                           </p>
                         </td>
                       </tr>
                       <tr>
-                        <td style="padding-bottom:10px;">
-                          <p style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-                                     font-size:14px;line-height:1.5;color:#a1a1aa;margin:0;">
+                        <td style="padding-bottom:9px;">
+                          <p class="bullet"
+                             style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+                                    font-size:14px;line-height:1.5;color:#52525b;margin:0;">
                             <span style="color:#8b5cf6;font-weight:700;">→</span>
                             &nbsp;A repeatable 10-minute workflow from idea to published
                           </p>
@@ -193,8 +198,9 @@
                       </tr>
                       <tr>
                         <td>
-                          <p style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-                                     font-size:14px;line-height:1.5;color:#a1a1aa;margin:0;">
+                          <p class="bullet"
+                             style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+                                    font-size:14px;line-height:1.5;color:#52525b;margin:0;">
                             <span style="color:#3b82f6;font-weight:700;">→</span>
                             &nbsp;How to turn this skill into real income in today's market
                           </p>
@@ -208,19 +214,24 @@
 
             </td>
           </tr>
-          <!-- ── END CARD ── -->
+          <!-- END CARD -->
 
-          <!--
-            ── FOOTER ──────────────────────────────────────────────────────
-            DO NOT add a footer here.
-            In MailerLite, add a native "Footer" block BELOW this HTML block.
-            That block includes the unsubscribe link automatically and passes
-            MailerLite's validator.
-            ─────────────────────────────────────────────────────────────────
-          -->
+          <!-- FOOTER -->
+          <tr>
+            <td align="center" style="padding-top:28px;padding-bottom:40px;">
+              <p class="footer-text"
+                 style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+                        font-size:12px;line-height:1.8;color:#a1a1aa;margin:0;text-align:center;">
+                You're receiving this because you registered at NotFilmedAI.<br />
+                <a href="{$unsubscribe}" class="footer-link"
+                   style="color:#a1a1aa;text-decoration:underline;">
+                  Unsubscribe
+                </a>
+              </p>
+            </td>
+          </tr>
 
         </table>
-        <!-- ── END WRAPPER ── -->
 
       </td>
     </tr>
