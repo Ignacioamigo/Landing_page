@@ -146,6 +146,10 @@ function LeadForm({ onClose, source }: LeadFormProps) {
       }
 
       setStatus("success");
+      // Redirect to the private video page after a brief success moment.
+      setTimeout(() => {
+        window.location.href = "/thank-you";
+      }, 1400);
     } catch (err) {
       const message =
         err instanceof Error ? err.message : "Something went wrong.";

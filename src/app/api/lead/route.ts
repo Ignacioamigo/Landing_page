@@ -87,5 +87,15 @@ export async function POST(request: NextRequest) {
     console.warn("[MailerLite] Subscriber upsert failed:", ml.error);
   }
 
-  return NextResponse.json({ ok: true });
+  // Set an httpOnly cookie so the /thank-you page can verify the user
+  // registered without exposing any token in the URL.
+  const response = NextResponse.json({ ok: true });
+  response.cookies.set("ugc_access", "1", {
+    httpOnly: true,
+    path: "/",
+    maxAge: 60 * 60 * 24 * 7, // 7 days
+    sameSite: "lax",
+    secure: process.env.NODE_ENV === "production",
+  });
+  return response;
 }
