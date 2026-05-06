@@ -176,7 +176,7 @@ export default async function ThankYouPage() {
           </div>
         </div>
 
-        <div className="ty-section">
+        <div className="ty-section w-full">
           <Testimonials />
         </div>
 
@@ -195,7 +195,7 @@ export default async function ThankYouPage() {
           </a>
         </div>
 
-        <div className="ty-section">
+        <div className="ty-section w-full">
           <UgcShowcase />
         </div>
 
