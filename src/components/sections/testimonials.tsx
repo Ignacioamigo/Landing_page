@@ -62,7 +62,10 @@ export function Testimonials() {
           </p>
         </div>
 
-        <div className="mt-12 columns-1 gap-4 sm:columns-2 lg:columns-3">
+        <div
+          className="mt-12 flex gap-4 overflow-x-auto pb-3 -mx-4 px-4 sm:-mx-6 sm:px-6"
+          style={{ scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch" }}
+        >
           {TESTIMONIALS.map((t, i) => (
             <motion.article
               key={t.name}
@@ -70,7 +73,8 @@ export function Testimonials() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.35, delay: i * 0.05, ease: "easeOut" }}
-              className="mb-4 break-inside-avoid rounded-2xl border border-border bg-surface p-6"
+              className="shrink-0 rounded-2xl border border-border bg-surface p-6"
+              style={{ scrollSnapAlign: "start", width: "clamp(260px, 75vw, 340px)" }}
             >
               <p className="text-[15px] leading-relaxed text-foreground">
                 &ldquo;{t.quote}&rdquo;
