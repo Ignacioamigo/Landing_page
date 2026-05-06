@@ -53,29 +53,16 @@ export function UgcShowcase() {
           </p>
         </div>
 
-        {/*
-         * Mobile  → horizontal scroll carousel with snap (1 card visible)
-         * Tablet+ → 2-column grid
-         * Desktop → 3-column grid
-         */}
+        {/* Horizontal scroll on all screen sizes */}
         <div
-          className={[
-            "mt-12",
-            "flex gap-4 overflow-x-auto snap-x snap-mandatory",
-            "pb-4 -mx-4 px-4",
-            "sm:grid sm:grid-cols-2 sm:overflow-visible sm:snap-none sm:pb-0 sm:mx-0 sm:px-0",
-            "lg:grid-cols-3",
-          ].join(" ")}
+          className="mt-12 flex gap-4 overflow-x-auto pb-4 -mx-4 px-4"
+          style={{ scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch" }}
         >
           {UGC_VIDEOS.map(({ id, aspect, label }) => (
             <article
               key={id}
-              className={[
-                "snap-center flex-shrink-0 w-[80vw]",
-                "sm:w-auto",
-                "overflow-hidden rounded-2xl border border-border bg-surface",
-                "transition-all duration-300 hover:-translate-y-1 hover:border-accent/40",
-              ].join(" ")}
+              className="shrink-0 overflow-hidden rounded-2xl border border-border bg-surface transition-all duration-300 hover:-translate-y-1 hover:border-accent/40"
+              style={{ scrollSnapAlign: "start", width: "clamp(220px, 38vw, 320px)" }}
             >
               <wistia-player
                 media-id={id}

@@ -34,7 +34,7 @@ export function Value() {
             id="what-youll-learn"
             className="mt-4 font-display text-3xl font-bold tracking-tight sm:text-5xl"
           >
-            Three pillars. <span className="gradient-text">Zero fluff.</span>
+            Three pillars. <span className="gradient-text">Real results.</span>
           </h2>
           <p className="mt-4 text-muted sm:text-lg">
             Everything you need to go from zero to consistently shipping viral

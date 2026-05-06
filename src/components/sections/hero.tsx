@@ -46,8 +46,8 @@ export function Hero() {
             <CtaButton size="xl" fullWidth source="hero" />
             <p className="flex items-center gap-2 text-xs text-muted">
               <Users className="h-3.5 w-3.5" />
-              Limited seats. Instant bonus:{" "}
-              <span className="text-foreground">50 AI prompts</span>.
+              Free · No credit card · Instant bonus:{" "}
+              <span className="text-foreground">50 AI prompts PDF</span>.
             </p>
           </div>
         </motion.div>
