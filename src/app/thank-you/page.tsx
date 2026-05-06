@@ -40,16 +40,16 @@ export default async function ThankYouPage() {
           padding-top: 56.25%;
         }
         .ty-section > section {
-          padding-top: 2.5rem !important;
-          padding-bottom: 2.5rem !important;
+          padding-top: 3rem !important;
+          padding-bottom: 3rem !important;
         }
       `}</style>
 
       {/* Meta Pixel ViewContent — fires only for registered users */}
       <PixelViewContent />
 
-      <main className="flex flex-col items-center bg-background px-4 pt-16 pb-4">
-        <div className="w-full max-w-4xl">
+      <main className="flex flex-col items-center bg-background pt-16 pb-4">
+        <div className="w-full max-w-4xl px-4">
           {/* Header */}
           <div className="mb-8 text-center">
             <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-accent">
