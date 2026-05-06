@@ -31,7 +31,7 @@ export function Bonus() {
               className="mt-5 font-display text-3xl font-bold tracking-tight sm:text-5xl"
             >
               50 AI Video Prompts <br />
-              <span className="gradient-text">for Sora &amp; Runway</span>
+              <span className="gradient-text">for UGC Creators</span>
             </h2>
 
             <p className="mt-5 text-muted sm:text-lg">
@@ -47,7 +47,7 @@ export function Bonus() {
               </li>
               <li className="flex items-start gap-3">
                 <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-                Optimized for Sora, Runway Gen-3 and Kling.
+                Optimized for UGC, brand content and faceless videos.
               </li>
               <li className="flex items-start gap-3">
                 <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
@@ -99,7 +99,7 @@ function MockupBook() {
               50 AI Video Prompts
             </h3>
             <p className="mt-2 text-sm text-muted">
-              For Sora &amp; Runway creators.
+              For UGC &amp; AI video creators.
             </p>
           </div>
 
