@@ -39,6 +39,10 @@ export default async function ThankYouPage() {
           filter: blur(5px);
           padding-top: 56.25%;
         }
+        .ty-section > section {
+          padding-top: 2.5rem !important;
+          padding-bottom: 2.5rem !important;
+        }
       `}</style>
 
       {/* Meta Pixel ViewContent — fires only for registered users */}
@@ -171,9 +175,11 @@ export default async function ThankYouPage() {
           </div>
         </div>
 
-        <Testimonials />
+        <div className="ty-section">
+          <Testimonials />
+        </div>
 
-        <div className="pb-10 text-center">
+        <div className="pb-8 text-center">
           <a
             href="https://whop.com/checkout/plan_oYS51IWhG8H9q"
             target="_blank"
@@ -188,9 +194,11 @@ export default async function ThankYouPage() {
           </a>
         </div>
 
-        <UgcShowcase />
+        <div className="ty-section">
+          <UgcShowcase />
+        </div>
 
-        <div className="pb-20 pt-4 text-center">
+        <div className="pb-16 pt-2 text-center">
           <a
             href="https://whop.com/checkout/plan_oYS51IWhG8H9q"
             target="_blank"
