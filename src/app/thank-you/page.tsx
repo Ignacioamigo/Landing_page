@@ -64,12 +64,13 @@ export default async function ThankYouPage() {
             </p>
           </div>
 
-          {/* Video */}
-          <div className="overflow-hidden rounded-2xl border border-border glow">
+          {/* Video — aspect ratio reserved so player load never shifts layout */}
+          <div className="overflow-hidden rounded-2xl border border-border glow"
+               style={{ aspectRatio: "16/9", width: "100%" }}>
             <wistia-player
               media-id={WISTIA_VIDEO_ID}
               aspect={1.7777777777777777}
-              style={{ display: "block", width: "100%" }}
+              style={{ display: "block", width: "100%", height: "100%" }}
             />
           </div>
 

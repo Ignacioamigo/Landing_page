@@ -66,10 +66,10 @@ export function Testimonials() {
           {TESTIMONIALS.map((t, i) => (
             <motion.article
               key={t.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.4, delay: i * 0.07, ease: "easeOut" }}
+              transition={{ duration: 0.35, delay: i * 0.05, ease: "easeOut" }}
               className="mb-4 break-inside-avoid rounded-2xl border border-border bg-surface p-6"
             >
               <p className="text-[15px] leading-relaxed text-foreground">
