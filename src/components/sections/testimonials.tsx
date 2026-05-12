@@ -42,9 +42,9 @@ const TESTIMONIALS = [
   },
 ];
 
-export function Testimonials() {
+export function Testimonials({ className }: { className?: string }) {
   return (
-    <section className="py-20 sm:py-28" aria-labelledby="testimonials-title">
+    <section className={className ?? "py-20 sm:py-28"} aria-labelledby="testimonials-title">
       <Container>
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-accent">

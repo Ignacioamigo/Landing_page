@@ -9,7 +9,7 @@ import { useEffect } from "react";
  */
 export function PixelViewContent() {
   useEffect(() => {
-    if (typeof window !== "undefined" && typeof window.fbq === "function") {
+    if (typeof window.fbq === "function") {
       window.fbq("track", "ViewContent", {
         content_name: "Masterclass Video Page",
         content_category: "thank-you",

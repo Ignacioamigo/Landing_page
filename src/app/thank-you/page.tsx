@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import Script from "next/script";
 import type { Metadata } from "next";
 import { PixelViewContent } from "./pixel-view-content";
+import { WhopButton } from "./whop-button";
 import { UgcShowcase } from "@/components/sections/ugc-showcase";
 import { Testimonials } from "@/components/sections/testimonials";
 
@@ -22,8 +23,7 @@ export default async function ThankYouPage() {
 
   return (
     <>
-      {/* Wistia scripts */}
-      <Script src="https://fast.wistia.com/player.js" strategy="afterInteractive" />
+      {/* Wistia video-specific module (player.js is loaded globally in layout) */}
       <Script
         src={`https://fast.wistia.com/embed/${WISTIA_VIDEO_ID}.js`}
         strategy="afterInteractive"
@@ -38,10 +38,6 @@ export default async function ThankYouPage() {
           display: block;
           filter: blur(5px);
           padding-top: 56.25%;
-        }
-        .ty-section > section {
-          padding-top: 3rem !important;
-          padding-bottom: 3rem !important;
         }
       `}</style>
 
@@ -83,18 +79,7 @@ export default async function ThankYouPage() {
               Get{" "}
               <span className="gradient-text">instant access</span>
             </h2>
-            <a
-              href="https://whop.com/checkout/plan_oYS51IWhG8H9q"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block rounded-xl px-10 py-4 font-bold text-white text-base sm:text-lg"
-              style={{
-                background: "linear-gradient(110deg,#3b82f6,#8b5cf6)",
-                textDecoration: "none",
-              }}
-            >
-              Join Now →
-            </a>
+            <WhopButton>Join Now →</WhopButton>
           </div>
 
           {/* Locked classes */}
@@ -160,58 +145,25 @@ export default async function ThankYouPage() {
 
             {/* Bottom CTA repeat */}
             <div className="mt-10 text-center">
-              <a
-                href="https://whop.com/checkout/plan_oYS51IWhG8H9q"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block rounded-xl px-10 py-4 font-bold text-white text-base sm:text-lg"
-                style={{
-                  background: "linear-gradient(110deg,#3b82f6,#8b5cf6)",
-                  textDecoration: "none",
-                }}
-              >
-                Unlock All 12 Classes →
-              </a>
+              <WhopButton>Unlock All 12 Classes →</WhopButton>
             </div>
           </div>
         </div>
 
-        <div className="ty-section w-full">
-          <Testimonials />
+        <div className="w-full">
+          <Testimonials className="py-12" />
         </div>
 
         <div className="pb-8 text-center">
-          <a
-            href="https://whop.com/checkout/plan_oYS51IWhG8H9q"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block rounded-xl px-10 py-4 font-bold text-white text-base sm:text-lg"
-            style={{
-              background: "linear-gradient(110deg,#3b82f6,#8b5cf6)",
-              textDecoration: "none",
-            }}
-          >
-            Join Now →
-          </a>
+          <WhopButton>Join Now →</WhopButton>
         </div>
 
-        <div className="ty-section w-full">
-          <UgcShowcase />
+        <div className="w-full">
+          <UgcShowcase className="py-12" />
         </div>
 
         <div className="pb-16 pt-2 text-center">
-          <a
-            href="https://whop.com/checkout/plan_oYS51IWhG8H9q"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block rounded-xl px-10 py-4 font-bold text-white text-base sm:text-lg"
-            style={{
-              background: "linear-gradient(110deg,#3b82f6,#8b5cf6)",
-              textDecoration: "none",
-            }}
-          >
-            Get Access Now →
-          </a>
+          <WhopButton>Get Access Now →</WhopButton>
           <p className="mt-3 text-xs text-muted">
             Create content like this from day one.
           </p>

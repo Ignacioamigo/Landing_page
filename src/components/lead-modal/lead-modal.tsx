@@ -36,6 +36,11 @@ export function LeadModal({ isOpen, onClose, source }: LeadModalProps) {
     window.addEventListener("keydown", handleKey);
     const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+
+    if (typeof window !== "undefined" && typeof window.fbq === "function") {
+      window.fbq("track", "InitiateCheckout");
+    }
+
     return () => {
       window.removeEventListener("keydown", handleKey);
       document.body.style.overflow = prevOverflow;
@@ -293,8 +298,3 @@ function LeadForm({ onClose, source }: LeadFormProps) {
   );
 }
 
-declare global {
-  interface Window {
-    fbq?: (...args: unknown[]) => void;
-  }
-}

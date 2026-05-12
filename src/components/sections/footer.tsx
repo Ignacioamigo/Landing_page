@@ -20,7 +20,7 @@ export function Footer() {
             Terms
           </a>
           <a
-            href="mailto:support@example.com"
+            href="mailto:hello@notfilmedai.com"
             className="transition-colors hover:text-foreground"
           >
             Contact

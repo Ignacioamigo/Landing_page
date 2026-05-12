@@ -43,36 +43,10 @@ export async function POST(request: NextRequest) {
   const magicLink = generateMagicLink(email, siteUrl);
 
   const supabase = getSupabaseAdmin();
-
-  if (supabase) {
-    const { error: dbError } = await supabase
-      .from("leads")
-      .upsert(
-        {
-          email,
-          first_name: firstName,
-          source: "masterclass-landing",
-          fbp: fbp ?? null,
-          fbc: fbc ?? null,
-          ip: ip ?? null,
-          user_agent: userAgent ?? null,
-          page_url: eventSourceUrl,
-          last_event_id: eventId,
-        },
-        { onConflict: "email" }
-      );
-
-    if (dbError) {
-      console.warn("[Supabase] Upsert failed:", dbError.message);
-    }
-  } else {
-    console.warn("[Supabase] Not configured — skipping DB insert.");
-  }
-
-  // Subscribe to MailerLite. Runs in parallel with CAPI to keep latency low.
   const groupId = process.env.MAILERLITE_GROUP_ID || undefined;
 
-  const [capi, ml] = await Promise.all([
+  // All three side-effects are independent — run them in parallel.
+  const [capi, ml, db] = await Promise.all([
     sendLeadEvent({
       email,
       firstName,
@@ -84,6 +58,22 @@ export async function POST(request: NextRequest) {
       fbc,
     }),
     upsertSubscriber({ email, firstName, groupId, magicLink }),
+    supabase
+      ? supabase.from("leads").upsert(
+          {
+            email,
+            first_name: firstName,
+            source: "masterclass-landing",
+            fbp: fbp ?? null,
+            fbc: fbc ?? null,
+            ip: ip ?? null,
+            user_agent: userAgent ?? null,
+            page_url: eventSourceUrl,
+            last_event_id: eventId,
+          },
+          { onConflict: "email" }
+        )
+      : Promise.resolve({ error: null }),
   ]);
 
   if (!capi.ok) {
@@ -92,6 +82,12 @@ export async function POST(request: NextRequest) {
 
   if (!ml.ok) {
     console.warn("[MailerLite] Subscriber upsert failed:", ml.error);
+  }
+
+  if (!supabase) {
+    console.warn("[Supabase] Not configured — skipping DB insert.");
+  } else if (db.error) {
+    console.warn("[Supabase] Upsert failed:", db.error.message);
   }
 
   // Set an httpOnly cookie so the /thank-you page can verify the user

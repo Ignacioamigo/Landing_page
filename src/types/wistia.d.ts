@@ -14,3 +14,8 @@ declare namespace React {
     }
   }
 }
+
+// Meta Pixel global — shared by lead-modal and whop-button.
+interface Window {
+  fbq?: (...args: unknown[]) => void;
+}

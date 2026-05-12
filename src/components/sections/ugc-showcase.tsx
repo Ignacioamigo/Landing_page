@@ -10,9 +10,9 @@ const UGC_VIDEOS: { id: string; aspect: number; paddingTop: string; label: strin
   { id: "9gwshdutsc", aspect: 0.5625,             paddingTop: "177.78%",  label: "Use case 6" },
 ];
 
-export function UgcShowcase() {
+export function UgcShowcase({ className }: { className?: string }) {
   return (
-    <section className="py-20 sm:py-28" aria-labelledby="ugc-showcase-title">
+    <section className={className ?? "py-20 sm:py-28"} aria-labelledby="ugc-showcase-title">
       {/* Load each video-specific Wistia module (player.js is global in layout) */}
       {UGC_VIDEOS.map(({ id }) => (
         <Script

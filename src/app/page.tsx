@@ -1,5 +1,6 @@
 import { Hero } from "@/components/sections/hero";
 import { SocialProof } from "@/components/sections/social-proof";
+import { Value } from "@/components/sections/value";
 import { UgcShowcase } from "@/components/sections/ugc-showcase";
 import { Bonus } from "@/components/sections/bonus";
 import { Testimonials } from "@/components/sections/testimonials";
@@ -12,6 +13,7 @@ export default function Page() {
     <main className="flex-1">
       <Hero />
       <SocialProof />
+      <Value />
       <UgcShowcase />
       <Testimonials />
       <Bonus />

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Container } from "@/components/ui/container";
+import { cn } from "@/lib/utils";
 
 const FAQS = [
   {
@@ -51,7 +52,7 @@ export function Faq() {
 
         <div className="mx-auto mt-12 max-w-2xl divide-y divide-border">
           {FAQS.map((faq, i) => (
-            <div key={i} className="py-5">
+            <div key={faq.q} className="py-5">
               <button
                 className="flex w-full items-center justify-between gap-4 text-left"
                 onClick={() => setOpen(open === i ? null : i)}
@@ -61,8 +62,10 @@ export function Faq() {
                   {faq.q}
                 </span>
                 <span
-                  className="shrink-0 text-muted transition-transform duration-200"
-                  style={{ transform: open === i ? "rotate(45deg)" : "rotate(0deg)" }}
+                  className={cn(
+                    "shrink-0 text-muted transition-transform duration-200",
+                    open === i && "rotate-45"
+                  )}
                   aria-hidden
                 >
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
