@@ -62,7 +62,7 @@ export async function sendEmailSequence(input: {
   const emails = [
     {
       // Email 1 — immediate: access link
-      subject: `${input.firstName}, your class is ready — watch now →`,
+      subject: `${input.firstName}, your access link is here`,
       html: render(loadTemplate("email-1-watch-now.plain.html"), vars),
       scheduledAt: undefined,
     },
