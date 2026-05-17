@@ -61,22 +61,26 @@ export async function sendEmailSequence(input: {
 
   const emails = [
     {
+      // Email 1 — immediate: access link
       subject: `${input.firstName}, your class is ready — watch now →`,
       html: render(loadTemplate("email-1-watch-now.plain.html"), vars),
       scheduledAt: undefined,
     },
     {
-      subject: "Did you get a chance to watch?",
+      // Email 2 — +4h: what's inside (strike while interest is hot)
+      subject: "Here's exactly what's inside the free class",
       html: render(loadTemplate("email-2-reminder.plain.html"), vars),
+      scheduledAt: hoursFromNow(4),
+    },
+    {
+      // Email 3 — +24h: simple reminder
+      subject: `${input.firstName}, did you get a chance to watch?`,
+      html: render(loadTemplate("email-3-breakdown.plain.html"), vars),
       scheduledAt: hoursFromNow(24),
     },
     {
-      subject: "Here's exactly what's inside (quick breakdown)",
-      html: render(loadTemplate("email-3-breakdown.plain.html"), vars),
-      scheduledAt: hoursFromNow(48),
-    },
-    {
-      subject: `${input.firstName}, your access link expires soon`,
+      // Email 4 — +72h: honest close (access removed in 24h = true, link expires at 96h)
+      subject: "Removing free access in 24 hours",
       html: render(loadTemplate("email-4-last-chance.plain.html"), vars),
       scheduledAt: hoursFromNow(72),
     },

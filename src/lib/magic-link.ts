@@ -9,8 +9,8 @@
 
 import { createHmac, timingSafeEqual } from "crypto";
 
-/** 30-day validity. Adjust to taste. */
-const TTL_SECONDS = 60 * 60 * 24 * 30;
+/** 4-day validity — aligns with email sequence (last email at +72h says "access removed in 24h"). */
+const TTL_SECONDS = 60 * 60 * 24 * 4;
 
 function getSecret(): string {
   const secret = process.env.MAGIC_LINK_SECRET;
