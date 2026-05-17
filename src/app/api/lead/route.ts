@@ -4,6 +4,7 @@ import { getSupabaseAdmin } from "@/lib/supabase/server";
 import { sendLeadEvent } from "@/lib/meta-capi";
 import { upsertSubscriber } from "@/lib/mailerlite";
 import { generateMagicLink } from "@/lib/magic-link";
+import { sendEmailSequence } from "@/lib/resend";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -45,8 +46,8 @@ export async function POST(request: NextRequest) {
   const supabase = getSupabaseAdmin();
   const groupId = process.env.MAILERLITE_GROUP_ID || undefined;
 
-  // All three side-effects are independent — run them in parallel.
-  const [capi, ml, db] = await Promise.all([
+  // All four side-effects are independent — run them in parallel.
+  const [capi, ml, db, resend] = await Promise.all([
     sendLeadEvent({
       email,
       firstName,
@@ -74,6 +75,7 @@ export async function POST(request: NextRequest) {
           { onConflict: "email" }
         )
       : Promise.resolve({ error: null }),
+    sendEmailSequence({ to: email, firstName, magicLink }),
   ]);
 
   if (!capi.ok) {
@@ -88,6 +90,10 @@ export async function POST(request: NextRequest) {
     console.warn("[Supabase] Not configured — skipping DB insert.");
   } else if (db.error) {
     console.warn("[Supabase] Upsert failed:", db.error.message);
+  }
+
+  if (!resend.ok) {
+    console.warn("[Resend] Email sequence failed:", resend.error);
   }
 
   // Set an httpOnly cookie so the /thank-you page can verify the user
