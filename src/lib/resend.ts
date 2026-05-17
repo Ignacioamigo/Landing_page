@@ -62,7 +62,7 @@ export async function sendEmailSequence(input: {
   const emails = [
     {
       subject: `${input.firstName}, your class is ready — watch now →`,
-      html: render(loadTemplate("email-1-watch-now.html"), vars),
+      html: render(loadTemplate("email-1-watch-now.plain.html"), vars),
       scheduledAt: undefined,
     },
     {
